@@ -60,7 +60,7 @@ function rule_create_taxonomies() {
     'query_var' => true,
     'rewrite' => array('slug' => 'section'),
     'labels' => array(
-      'name' => _x('Sections', 'taxonomy general name'),
+      'name' => _x('Section', 'taxonomy general name'),
       'singular_name' => _x('Section', 'taxonomy singular name'),
       'search_items' => __('Search Sections'),
       'all_items' => __('All Sections'),
@@ -77,28 +77,49 @@ function rule_create_taxonomies() {
 
 /*
  * 
- * Add section to rules listing
+ * Add section to columns in rules listing
  */
 
-//'rule' is the registered post type name
-add_filter('manage_rules_posts_columns', 'rule_cpt_columns');
-add_action('manage_rule_posts_custom_column', 'rule_cpt_custom_column', 10, 2);
+add_filter('manage_taxonomies_for_rule_columns', 'section_column');
 
-function rule_cpt_columns($defaults) {
-  $defaults['section'] = 'Section'; //section is registered taxonomy name.
-  return $defaults;
+function section_column($taxonomies) {
+  $taxonomies[] = 'section';
+  return $taxonomies;
 }
 
-function rule_cpt_custom_column($column_name, $post_id) {
-  $taxonomy = $column_name;
-  $post_type = get_post_type($post_id);
-  $terms = get_the_terms($post_id, $taxonomy);
+/*
+ * 
+ * Custom taxonomy breadcrumb
+ */
 
-  if (!empty($terms)) {
-    foreach ($terms as $term)
-      $post_terms[] = "<a href='edit.php?post_type={$post_type}&{$taxonomy}={$term->slug}'> " . esc_html(sanitize_term_field('name', $term->name, $term->term_id, $taxonomy, 'edit')) . "</a>";
-    echo join(', ', $post_terms);
+function postTypeCrumbs($postType, $postTax) {
+
+  $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
+  
+  
+  
+  $taxonomy = get_taxonomy($term->taxonomy);
+  $parents = get_ancestors($term->term_id, $postTax);
+  $parents = array_reverse($parents);
+
+  $archive_link = get_post_type_archive_link($postType);
+
+  echo '<ul class="custom-crumbs">';
+  //add home link
+  if (!is_front_page()){
+    echo '<li><a href="'.get_home_url().'">Home</a></li>';
+  
   }
-  else
-    echo '<i>Not assigned.</i>';
+  
+
+  foreach ($parents as $parent) {
+    $p = get_term($parent, $postTax);
+    echo '<li><a href="' . get_term_link($p->slug, $postTax) . '" title="' . $p->name . '">' . $p->name . '</a></li>';
+  }
+
+  if ($term) {
+    echo '<li>' . $term->name . '</li>';
+  }
+
+  echo '</ul>';
 }
