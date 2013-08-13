@@ -1,0 +1,44 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+ 
+ 
+ 
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+*.swp
+ 
+# Wordpress Media Files #
+#########################
+wp-content/blogs.dir
+wp-content/uploads
+wp-content/*uploads/*
+ 
+# W3 Total Cache files #
+########################
+wp-content/w3-total-cache*
+wp-content/w3tc-*/**/**
+wp-content/db.php
+wp-content/advanced-cache.php
+wp-content/object-cache.php
+ 
+# WordPress stuff #
+###################
+.htaccess
+sitemap.xml
+sitemap.xml.gz
+readme.html
+*.log
+local-config.php
+wp-config.php
