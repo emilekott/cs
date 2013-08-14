@@ -18,15 +18,19 @@ get_header();
 
 <section id="primary" class="site-content">
   <div id="content" role="main">
+    
+    <!-- breadcrumbs -->
     <?php postTypeCrumbs('rule', 'section'); ?>
     <?php $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy')); ?>
-    <header class="archive-header">
-      <h1 class="archive-title"><?php echo $term->name; ?></h1>
+    
+    <!-- main heading -->
+    <header class="entry-header">
+      <h1 class="entry-title"><?php echo $term->name; ?></h1>
     </header><!-- .archive-header -->
 
     
     
-    <?php if (have_posts()) : //case 2 or 3 ?>
+    <?php if (have_posts()) : //case 1, 2 or 3 ?>
 
 
     
@@ -40,34 +44,29 @@ get_header();
         'parent' => $term->term_id
         
       );
-      $new_children = get_terms('section', $args);
+      $children = get_terms('section', $args);
       
-      $children = get_term_children($term->term_id, get_query_var('taxonomy')); // get children
 
-      if (sizeof($new_children) > 0) {
-        
+      if (sizeof($children) > 0) {
+        //case 1
+        //
         // get list of child terms with permalinks.
-        foreach ($new_children As $child) {
+        foreach ($children As $child) {
           $permalink = get_home_url().'/section/'.$child->slug;
           $name = $child->name;
           ?>
-          <article id="post-<?php echo $child->term_id; ?>">
-
-            <header class="entry-header">
-
-              <h1 class="entry-title">
+         
+              <h2>
                 <a href="<?php echo $permalink; ?>" rel="bookmark"><?php echo $name; ?></a>
-              </h1>
+              </h2>
 
-            </header><!-- .entry-header -->
-          </article><!-- #post -->
 
           <?
         }
       }
       else {
 
-
+        //case 2 or 3 
         /* Start the Loop */
         while (have_posts()) : the_post();
           ?>

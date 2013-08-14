@@ -93,33 +93,45 @@ function section_column($taxonomies) {
  */
 
 function postTypeCrumbs($postType, $postTax) {
+  if (!is_front_page()) {
+    //only include on internal pages
+    echo '<ul class="custom-crumbs">';
+    echo '<li><a href="' . get_home_url() . '">Home</a> &rarr; </li>';
 
-  $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
-  
-  
-  
-  $taxonomy = get_taxonomy($term->taxonomy);
-  $parents = get_ancestors($term->term_id, $postTax);
-  $parents = array_reverse($parents);
+    $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
 
-  $archive_link = get_post_type_archive_link($postType);
 
-  echo '<ul class="custom-crumbs">';
-  //add home link
-  if (!is_front_page()){
-    echo '<li><a href="'.get_home_url().'">Home</a></li>';
-  
+    if ($term) {
+      //this is a term page
+
+
+      $parents = get_ancestors($term->term_id, $postTax);
+      $parents = array_reverse($parents);
+
+
+
+
+      //add home link
+
+
+
+      foreach ($parents as $parent) {
+        $p = get_term($parent, $postTax);
+        echo '<li><a href="' . get_term_link($p->slug, $postTax) . '" title="' . $p->name . '">' . $p->name . '</a> &rarr; </li>';
+      }
+
+      if ($term) {
+        echo '<li>' . $term->name . '</li>';
+      }
+
+      echo '</ul>';
+    }
+    else {
+      //this is a rule page
+      //get rule's section 
+      //get hierarchy
+      
+      
+    }
   }
-  
-
-  foreach ($parents as $parent) {
-    $p = get_term($parent, $postTax);
-    echo '<li><a href="' . get_term_link($p->slug, $postTax) . '" title="' . $p->name . '">' . $p->name . '</a></li>';
-  }
-
-  if ($term) {
-    echo '<li>' . $term->name . '</li>';
-  }
-
-  echo '</ul>';
 }

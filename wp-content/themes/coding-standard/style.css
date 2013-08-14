@@ -8,3 +8,18 @@ Template:       twentytwelve
 */
 
 @import url("../twentytwelve/style.css");
+
+
+/*breadcrumb*/
+ul.custom-crumbs{
+  margin-bottom: 20px;
+}
+ul.custom-crumbs li{
+  display: inline;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+ul.custom-crumbs li a{
+  text-decoration: none;
+}
