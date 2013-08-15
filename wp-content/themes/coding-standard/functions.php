@@ -106,32 +106,45 @@ function postTypeCrumbs($postType, $postTax) {
 
 
       $parents = get_ancestors($term->term_id, $postTax);
-      $parents = array_reverse($parents);
-
-
-
-
-      //add home link
-
-
-
-      foreach ($parents as $parent) {
-        $p = get_term($parent, $postTax);
-        echo '<li><a href="' . get_term_link($p->slug, $postTax) . '" title="' . $p->name . '">' . $p->name . '</a> &rarr; </li>';
-      }
-
-      if ($term) {
-        echo '<li>' . $term->name . '</li>';
-      }
-
-      echo '</ul>';
     }
     else {
       //this is a rule page
       //get rule's section 
       //get hierarchy
-      
+      //spit out as a crumb
+      $post_ID = get_the_ID();
+      $post_terms = wp_get_post_terms($post_ID, $postTax, array("fields" => 'ids'));
+      if ($post_terms)
+        $post_term = $post_terms[0]; //only first term
+      $parents = get_ancestors($post_term, $postTax);
+    }
+
+    $parents = array_reverse($parents);
+
+
+
+
+    //add home link
+
+
+
+    foreach ($parents as $parent) {
+      $p = get_term($parent, $postTax);
+      echo '<li><a href="' . get_term_link($p->slug, $postTax) . '" title="' . $p->name . '">' . $p->name . '</a> &rarr; </li>';
+    }
+
+    if ($term) {
+      echo '<li>' . $term->name . '</li>';
+    }
+    else{
+      //we have a rule
+      $section = get_term($post_term, $postTax);
+      echo '<li><a href="' . get_term_link($section->slug, $postTax) . '" title="' . $section->name . '">' . $section->name . '</a> &rarr; </li>';
+      $post_title = get_the_title($post_ID);
+      echo '<li>' . $post_title . '</li>';
       
     }
+
+    echo '</ul>';
   }
 }
