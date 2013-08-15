@@ -23,3 +23,13 @@ ul.custom-crumbs li{
 ul.custom-crumbs li a{
   text-decoration: none;
 }
+
+
+/*lists of rules or sections */
+.rule-list{
+  line-height: 1.5em;
+}
+.rule-list a{
+  text-decoration: none;
+  
+}

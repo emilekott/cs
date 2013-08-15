@@ -136,15 +136,39 @@ function postTypeCrumbs($postType, $postTax) {
     if ($term) {
       echo '<li>' . $term->name . '</li>';
     }
-    else{
+    else {
       //we have a rule
       $section = get_term($post_term, $postTax);
       echo '<li><a href="' . get_term_link($section->slug, $postTax) . '" title="' . $section->name . '">' . $section->name . '</a> &rarr; </li>';
       $post_title = get_the_title($post_ID);
       echo '<li>' . $post_title . '</li>';
-      
     }
 
     echo '</ul>';
   }
+}
+
+/*
+ * 
+ * Get previous and next categories on post
+ * not working......
+ */
+
+function neighbour_term_link($post_ID, $postTax, $prev_next) {
+  $post_terms = wp_get_post_terms($post_ID, $postTax, array("fields" => 'ids'));
+  if ($post_terms)
+    $post_term = $post_terms[0]; //only first term
+
+  $tax = array($postTax);
+
+  $args = array(
+    'order' => 'ASC',
+    'hide_empty' => false,
+    'fields' => 'all',
+    'offset' => 1,
+  );
+  $term = get_terms($tax, $args);
+  $prev_term_key = _get_prev_term_key($post_term);
+  $next_term_key = _get_next_term_key($post_term);
+  
 }

@@ -15,12 +15,13 @@
  */
 get_header();
 ?>
+<!-- breadcrumbs -->
+<?php postTypeCrumbs('rule', 'section'); ?>
 
 <section id="primary" class="site-content">
   <div id="content" role="main">
 
-    <!-- breadcrumbs -->
-    <?php postTypeCrumbs('rule', 'section'); ?>
+    
     <?php $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy')); ?>
 
     <!-- main heading -->
@@ -54,7 +55,7 @@ get_header();
           $name = $child->name;
           ?>
 
-          <h2>
+          <h2 class="rule-list">
             <a href="<?php echo $permalink; ?>" rel="bookmark"><?php echo $name; ?></a>
           </h2>
 
@@ -69,7 +70,7 @@ get_header();
         if ($count > 1) { //case 3
           while (have_posts()) : the_post();
             ?>
-            <h2>
+            <h2 class="rule-list">
               <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
             </h2>
             <?php
@@ -80,13 +81,6 @@ get_header();
           <?php while (have_posts()) : the_post(); ?>
 
         <?php get_template_part('content', get_post_format()); ?>
-
-            <nav class="nav-single">
-              <h3 class="assistive-text"><?php _e('Post navigation', 'twentytwelve'); ?></h3>
-        <?php //prev and next have been swapped so that they make sense  ?>
-              <span class="nav-previous"><?php next_post_link('%link', '<span class="meta-nav">' . _x('&larr;', 'Previous post link', 'twentytwelve') . '</span> %title '); ?></span> 	
-              <span class="nav-next"><?php previous_post_link('%link', '%title <span class="meta-nav">' . _x('&rarr;', 'Next post link', 'twentytwelve') . '</span>'); ?></span>
-            </nav><!-- .nav-single -->
 
             <?php comments_template('', true); ?>
 

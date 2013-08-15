@@ -7,13 +7,17 @@
  * @since Twenty Twelve 1.0
  */
 get_header();
-?>
 
+//get section, prev and next sections for nav
+
+
+?>
+ <!-- breadcrumbs -->
+    <?php postTypeCrumbs('rule', 'section'); ?>
 <div id="primary" class="site-content">
   <div id="content" role="main">
 
-    <!-- breadcrumbs -->
-    <?php postTypeCrumbs('rule', 'section'); ?>
+   
 
     <?php while (have_posts()) : the_post(); ?>
 
