@@ -59,27 +59,47 @@ get_header();
           </h2>
 
 
-      <?
-    }
-  }
-  else {
+          <?
+        }
+      }
+      else {
+        //case 2 or 3 
+        /* Start the Loop */
+        $count = $wp_query->found_posts;
+        if ($count > 1) { //case 3
+          while (have_posts()) : the_post();
+            ?>
+            <h2>
+              <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
+            </h2>
+            <?php
+          endwhile;
+        }
+        else { //case 2 
+          ?>
+          <?php while (have_posts()) : the_post(); ?>
 
-    //case 2 or 3 
-    /* Start the Loop */
-    while (have_posts()) : the_post();
+        <?php get_template_part('content', get_post_format()); ?>
+
+            <nav class="nav-single">
+              <h3 class="assistive-text"><?php _e('Post navigation', 'twentytwelve'); ?></h3>
+        <?php //prev and next have been swapped so that they make sense  ?>
+              <span class="nav-previous"><?php next_post_link('%link', '<span class="meta-nav">' . _x('&larr;', 'Previous post link', 'twentytwelve') . '</span> %title '); ?></span> 	
+              <span class="nav-next"><?php previous_post_link('%link', '%title <span class="meta-nav">' . _x('&rarr;', 'Next post link', 'twentytwelve') . '</span>'); ?></span>
+            </nav><!-- .nav-single -->
+
+            <?php comments_template('', true); ?>
+
+          <?php
+          endwhile; // end of the loop. 
+        }
+      }
       ?>
-          <h2>
-            <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-          </h2>
-      <?php
-    endwhile;
-  }
-  ?>
       <?php
     else:
       echo "No sections or rules in this section";
       ?>
-    <?php endif; ?>
+<?php endif; ?>
 
   </div><!-- #content -->
 </section><!-- #primary -->
