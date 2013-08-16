@@ -29,7 +29,7 @@ get_header();
         <span class="nav-previous"><?php next_post_link('%link', '<span class="meta-nav">' . _x('&larr;', 'Previous post link', 'twentytwelve') . '</span> %title '); ?></span> 	
         <span class="nav-next"><?php previous_post_link('%link', '%title <span class="meta-nav">' . _x('&rarr;', 'Next post link', 'twentytwelve') . '</span>'); ?></span>
       </nav><!-- .nav-single -->
-
+      <a name="respond"></a><a name="comments"></a>
       <?php comments_template('', true); ?>
 
     <?php endwhile; // end of the loop. ?>
