@@ -172,3 +172,24 @@ function neighbour_term_link($post_ID, $postTax, $prev_next) {
   $next_term_key = _get_next_term_key($post_term);
   
 }
+
+
+
+/*
+ * Add header widget area
+ * 
+ * 
+ */
+function prqa_widgets_init(){
+  register_sidebar( array(
+		'name' => __( 'Header', 'twentytwelve' ),
+		'id' => 'header-1',
+		'description' => __( 'Appears in header zone', 'twentytwelve' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+}
+
+add_action( 'widgets_init', 'prqa_widgets_init' );

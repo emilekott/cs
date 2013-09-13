@@ -50,3 +50,27 @@ code {
   font-size:1.2em; 
   color: #008099;
 }
+
+
+
+/*header search*/
+.header-widgets{
+  float: right;
+  margin-top: 8px;
+  
+}
+
+header#masthead hgroup{
+  float: left;
+  margin-bottom: 20px;
+}
+
+
+/*tax desc */
+.tag-desc{
+  margin-bottom: 20px;
+}
+
+.tag-desc p{
+  margin: 20px 0;
+}

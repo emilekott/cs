@@ -21,7 +21,7 @@ get_header();
 <section id="primary" class="site-content">
   <div id="content" role="main">
 
-    
+
     <?php $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy')); ?>
 
     <!-- main heading -->
@@ -38,6 +38,12 @@ get_header();
 
 
       <?php
+      $termDiscription = term_description('', get_query_var('taxonomy'));
+      if ($termDiscription != '') {
+        echo '<div class="tag-desc">' . $termDiscription . '</div>';
+      }
+
+
       $args = array(
         'child_of' => $term->term_id,
         'hide_empty' => false,
@@ -49,6 +55,7 @@ get_header();
       if (sizeof($children) > 0) {
         //case 1
         //
+        
         // get list of child terms with permalinks.
         foreach ($children As $child) {
           $permalink = get_home_url() . '/section/' . $child->slug;
@@ -80,11 +87,11 @@ get_header();
           ?>
           <?php while (have_posts()) : the_post(); ?>
 
-        <?php get_template_part('content', get_post_format()); ?>
+            <?php get_template_part('content', get_post_format()); ?>
 
             <?php comments_template('', true); ?>
 
-          <?php
+            <?php
           endwhile; // end of the loop. 
         }
       }
@@ -93,7 +100,7 @@ get_header();
     else:
       echo "No sections or rules in this section";
       ?>
-<?php endif; ?>
+    <?php endif; ?>
 
   </div><!-- #content -->
 </section><!-- #primary -->
