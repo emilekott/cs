@@ -5,10 +5,69 @@ Author:         emilekottADMIN
 Template:       twentytwelve
 
 (optional values you can add: Theme URI, Author URI, Version)
+
+PRQA red is  #C62030
+PRQA grey is #9A9C9D
+
+
 */
 
 @import url("../twentytwelve/style.css");
 
+h1.site-title a{
+  color: #C62030;
+}
+
+.site-header h1 a:hover{
+  color: #9A9C9D;
+}
+
+a, .comments-link a, footer[role="contentinfo"] a {
+  color: #C62030;
+}
+
+.entry-content a{
+  text-decoration: underline;
+}
+
+.entry-content a:hover, .comments-link a:hover, footer[role="contentinfo"] a:hover{
+  text-decoration: none;
+  color: #C62030;
+}
+
+.nav-single a:hover{
+  text-decoration: none;
+  color: #C62030;
+}
+
+/*menu-bar*/
+#navbar{
+  float: left;
+  width: 100%;
+}
+
+
+#menu-main-menu {
+  height: 50px;
+  color: #FFFFFF;
+  background: url('images/prqa-top-menu-gradient.jpg') left top repeat-x;
+}
+
+#menu-main-menu li{
+  padding-left: 10px;
+}
+
+#menu-main-menu a{
+  color: #fff;
+  font-size: 16px;
+  text-transform: none;
+}
+
+
+/*wrapper*/
+div.wrapper{
+
+}
 
 /*breadcrumb*/
 ul.custom-crumbs{
@@ -41,7 +100,7 @@ pre {
   color: blue; 
   margin: 10px; 
   padding:10px; 
-  background: #FFFFB3;
+  background: #ffffe4;
   -webkit-box-shadow:  1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 
   box-shadow:  1px 1px 1px 1px rgba(0, 0, 0, 0.1);
@@ -52,12 +111,22 @@ code {
 }
 
 
+/*content*/
+
+.site-content article{
+  margin-bottom: 1em;
+}
+
+
+.site-content nav {
+  margin-bottom: 32px;
+}
 
 /*header search*/
 .header-widgets{
   float: right;
-  margin-top: 8px;
-  
+  margin-top: 40px;
+
 }
 
 header#masthead hgroup{
@@ -73,4 +142,25 @@ header#masthead hgroup{
 
 .tag-desc p{
   margin: 20px 0;
+}
+
+
+
+/*rule post nav*/
+.nav-up{
+  width: 10%;
+  display: inline-block;
+  text-align: center;
+}
+
+.nav-previous, .nav-next{
+  width: 40%;
+}
+.copyright{
+  float:left;
+  margin-top: 20px;
+}
+
+.sponsored{
+  float:right;
 }
