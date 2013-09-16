@@ -28,7 +28,12 @@ get_header();
     <header class="entry-header">
       <h1 class="entry-title"><?php echo $term->name; ?></h1>
     </header><!-- .archive-header -->
-
+    <?php
+    $termDiscription = term_description('', get_query_var('taxonomy'));
+    if ($termDiscription != '') {
+      echo '<div class="tag-desc">' . $termDiscription . '</div>';
+    }
+    ?>
 
 
     <?php if (have_posts()) : //case 1, 2 or 3 ?>
