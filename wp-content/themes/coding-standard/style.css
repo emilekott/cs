@@ -22,11 +22,11 @@ h1.site-title a{
   color: #9A9C9D;
 }
 
-a, .comments-link a, footer[role="contentinfo"] a {
+a, .entry-content a:visited, .comments-link a, footer[role="contentinfo"] a {
   color: #C62030;
 }
 
-.entry-content a{
+.entry-content a {
   text-decoration: underline;
 }
 
@@ -72,6 +72,7 @@ div.wrapper{
 /*breadcrumb*/
 ul.custom-crumbs{
   margin-bottom: 20px;
+  line-height: 1.2em;
 }
 ul.custom-crumbs li{
   display: inline;
@@ -108,6 +109,10 @@ pre {
 code {
   font-size:1.2em; 
   color: #008099;
+}
+
+.entry-content pre, .comment-content pre {
+  color: #444;
 }
 
 
@@ -163,4 +168,11 @@ header#masthead hgroup{
 
 .sponsored{
   float:right;
+}
+
+
+
+/*tables*/
+.entry-content table, .comment-content table {
+  color: #444;
 }
