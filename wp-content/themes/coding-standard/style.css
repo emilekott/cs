@@ -176,3 +176,16 @@ header#masthead hgroup{
 .entry-content table, .comment-content table {
   color: #444;
 }
+
+
+/*grandchildren on index page*/
+ul.grand-children{
+  padding-left: 1em;
+  
+}
+
+ul.grand-children li a{
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1.5em;
+}
