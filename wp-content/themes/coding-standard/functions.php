@@ -193,3 +193,9 @@ function prqa_widgets_init(){
 }
 
 add_action( 'widgets_init', 'prqa_widgets_init' );
+
+// allow html in category and taxonomy descriptions
+remove_filter( 'pre_term_description', 'wp_filter_kses' );
+remove_filter( 'pre_link_description', 'wp_filter_kses' );
+remove_filter( 'pre_link_notes', 'wp_filter_kses' );
+remove_filter( 'term_description', 'wp_kses_data' );
