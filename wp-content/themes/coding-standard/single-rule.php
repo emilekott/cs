@@ -34,9 +34,9 @@ get_header();
       <nav class="nav-single">
         <h3 class="assistive-text"><?php _e('Post navigation', 'twentytwelve'); ?></h3>
         <?php //prev and next have been swapped so that they make sense ?>
-        <span class="nav-previous"><?php next_post_link('%link', '<span class="meta-nav">' . _x('&larr;', 'Previous post link', 'twentytwelve') . '</span> %title '); ?></span> 
+        <span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentytwelve' ) . '</span> %title' ); ?></span> 
         <span class="nav-up"><?php echo $term_link; ?></span>
-        <span class="nav-next"><?php previous_post_link('%link', '%title <span class="meta-nav">' . _x('&rarr;', 'Next post link', 'twentytwelve') . '</span>'); ?></span>
+        <span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentytwelve' ) . '</span>' ); ?></span>
       </nav><!-- .nav-single -->
       <a name="respond"></a><a name="comments"></a>
       <?php comments_template('', true); ?>
