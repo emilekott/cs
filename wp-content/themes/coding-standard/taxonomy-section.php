@@ -36,7 +36,7 @@ get_header();
     ?>
 
 
-    <?php if (have_posts()) : //case 1, 2 or 3 ?>
+
 
 
 
@@ -101,11 +101,7 @@ get_header();
         }
       }
       ?>
-      <?php
-    else:
-      echo "No sections or rules in this section";
-      ?>
-    <?php endif; ?>
+   
 
   </div><!-- #content -->
 </section><!-- #primary -->
