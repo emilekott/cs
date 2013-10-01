@@ -43,11 +43,7 @@ get_header();
 
 
       <?php
-      $termDiscription = term_description('', get_query_var('taxonomy'));
-      if ($termDiscription != '') {
-        echo '<div class="tag-desc">' . $termDiscription . '</div>';
-      }
-
+     
 
       $args = array(
         'child_of' => $term->term_id,
